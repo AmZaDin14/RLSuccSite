@@ -1,3 +1,9 @@
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 import numpy as np
 import torch
 from sklearn.metrics import confusion_matrix, f1_score, roc_auc_score, recall_score, average_precision_score
@@ -13,15 +19,15 @@ import pandas as pd
 
 device = "cpu"
 
-ProtT5_test_negative = "../Dataset/test/features/test_negative_ProtT5_features_K.csv"
-ProtT5_test_positive = "../Dataset/test/features/test_positive_ProtT5_features_K.csv"
-ProtT5_train_negative = "../Dataset/train/features/train_negative_ProtT5_features_K.csv"
-ProtT5_train_positive = "../Dataset/train/features/train_positive_ProtT5_features_K.csv"
+ProtT5_test_negative = BASE_DIR / "Dataset/test/features/test_negative_ProtT5_features_K.csv"
+ProtT5_test_positive = BASE_DIR / "Dataset/test/features/test_positive_ProtT5_features_K.csv"
+ProtT5_train_negative = BASE_DIR / "Dataset/train/features/train_negative_ProtT5_features_K.csv"
+ProtT5_train_positive = BASE_DIR / "Dataset/train/features/train_positive_ProtT5_features_K.csv"
 
-ZccFCCP_test_negative = "../Dataset/test/fasta/test_negative_sites.fasta"
-ZccFCCP_test_positive = "../Dataset/test/fasta/test_positive_sites.fasta"
-ZccFCCP_train_negative = "../Dataset/train/fasta/train_negative_sites.fasta"
-ZccFCCP_train_positive = "../Dataset/train/fasta/train_positive_sites.fasta"
+ZccFCCP_test_negative = BASE_DIR / "Dataset/test/fasta/test_negative_sites.fasta"
+ZccFCCP_test_positive = BASE_DIR / "Dataset/test/fasta/test_positive_sites.fasta"
+ZccFCCP_train_negative = BASE_DIR / "Dataset/train/fasta/train_negative_sites.fasta"
+ZccFCCP_train_positive = BASE_DIR / "Dataset/train/fasta/train_positive_sites.fasta"
 # -----------------------------------------------------ProtT5模型-----------------------------------------------------
 X_ProtT5_train, y_train, X_ProtT5_test, y_test, r = GetProtT5_K_4(ProtT5_train_negative, ProtT5_train_positive,
                                                                   ProtT5_test_negative, ProtT5_test_positive)
