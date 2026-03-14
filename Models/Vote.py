@@ -51,7 +51,7 @@ policy_module_ProtT5 = ProbabilisticActor(
     return_log_prob=True,
 )
 
-model_path_ProtT5 = 'ProtT5_N10_ACC7142_MCC3513_SN7191_SP7130.pth'
+model_path_ProtT5 = BASE_DIR / 'Models' / 'ProtT5_N10_ACC7142_MCC3513_SN7191_SP7130.pth'
 policy_module_ProtT5.load_state_dict(torch.load(model_path_ProtT5, map_location=device))
 policy_module_ProtT5.eval()
 # -----------------------------------------------------ZccFCCP模型-----------------------------------------------------
@@ -77,7 +77,7 @@ policy_module_ZccFCCP = ProbabilisticActor(
     return_log_prob=True,
 )
 
-model_path_ZccFCCP = 'TPEMPPS_CCP_ACC7083_MCC3307_SN6943_SP7116.pth'
+model_path_ZccFCCP = BASE_DIR / 'Models' / 'TPEMPPS_CCP_ACC7083_MCC3307_SN6943_SP7116.pth'
 policy_module_ZccFCCP.load_state_dict(torch.load(model_path_ZccFCCP, map_location=device))
 policy_module_ZccFCCP.eval()
 
@@ -150,11 +150,11 @@ metrics_dict = {
 }
 # 输出和保存性能指标
 df_metrics = pd.DataFrame([metrics_dict])
-df_metrics.to_csv('Data/performance_metrics.csv', index=False)
+df_metrics.to_csv(BASE_DIR / 'Models' / 'Data/performance_metrics.csv', index=False)
 
 # 保存预测概率和标签
 df_predictions = pd.DataFrame({
     'Probabilities': Probabilities,
     'Labels': y_test
 })
-df_predictions.to_csv('Data/probabilities.csv', index=False)
+df_predictions.to_csv(BASE_DIR / 'Models' / 'Data/probabilities.csv', index=False)
